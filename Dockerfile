@@ -1,8 +1,8 @@
 FROM node:18-alpine AS base
+RUN corepack enable && corepack prepare pnpm@latest --activate 
 
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
-RUN corepack enable && corepack prepare pnpm@latest --activate 
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
